@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsappg16/pages/camera_page.dart';
 import 'package:whatsappg16/pages/chats_tab_page.dart';
 import 'package:whatsappg16/pages/status_tab_page.dart';
 
@@ -17,7 +18,7 @@ class _WhatsappHomeState extends State<WhatsappHome>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
 
     _tabController.index = 1;
 
@@ -39,6 +40,18 @@ class _WhatsappHomeState extends State<WhatsappHome>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+        onPressed: () {},
+        child: Icon(
+          _currentIndex == 0
+              ? Icons.message
+              : _currentIndex == 1
+              ? Icons.camera_alt
+              : Icons.add_call,
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Color(0xff18816A),
         foregroundColor: Colors.white,
@@ -57,7 +70,7 @@ class _WhatsappHomeState extends State<WhatsappHome>
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           indicatorWeight: 3,
-          tabs: [Text("CHATS"), Text("ESTADOS"), Text("LLAMADAS")],
+          tabs: [Text("CHATS"), Text("ESTADOS"), Text("LLAMADAS"), Text("Cam")],
         ),
       ),
       body: TabBarView(
@@ -66,6 +79,7 @@ class _WhatsappHomeState extends State<WhatsappHome>
           ChatsTabPage(),
           StatusTabPage(),
           Center(child: Text("LLAMADAS")),
+          CameraPage(),
         ],
       ),
     );
