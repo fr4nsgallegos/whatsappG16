@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsappg16/pages/chats_tab_page.dart';
+import 'package:whatsappg16/pages/status_tab_page.dart';
 
 class WhatsappHome extends StatefulWidget {
   const WhatsappHome({super.key});
@@ -17,6 +18,8 @@ class _WhatsappHomeState extends State<WhatsappHome>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
+    _tabController.index = 1;
 
     _tabController.addListener(() {
       if (_currentIndex != _tabController.index) {
@@ -61,7 +64,7 @@ class _WhatsappHomeState extends State<WhatsappHome>
         controller: _tabController,
         children: [
           ChatsTabPage(),
-          Center(child: Text("Estados")),
+          StatusTabPage(),
           Center(child: Text("LLAMADAS")),
         ],
       ),

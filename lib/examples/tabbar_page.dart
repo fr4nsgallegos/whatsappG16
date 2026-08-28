@@ -7,6 +7,7 @@ class TabbarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3, //número de pestañas
+      initialIndex: 2,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
