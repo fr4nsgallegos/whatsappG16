@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsappg16/pages/chats_tab_page.dart';
 
 class WhatsappHome extends StatefulWidget {
   const WhatsappHome({super.key});
@@ -55,6 +56,14 @@ class _WhatsappHomeState extends State<WhatsappHome>
           indicatorWeight: 3,
           tabs: [Text("CHATS"), Text("ESTADOS"), Text("LLAMADAS")],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          ChatsTabPage(),
+          Center(child: Text("Estados")),
+          Center(child: Text("LLAMADAS")),
+        ],
       ),
     );
   }
