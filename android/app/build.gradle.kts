@@ -19,7 +19,7 @@ android {
         applicationId = "com.example.whatsappg16"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = flutter.minSdkVersion // el minSdk indica ual es la versión mínima de Android que podrá ejecutar nuestra app
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
