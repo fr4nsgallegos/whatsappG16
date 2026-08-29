@@ -75,17 +75,102 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     }
   }
 
-  Widget _buildCameraBody(CameraController? contoller) {
-    return Container();
+  Widget _buildCameraBody(CameraController? controller) {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+    if (_errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: EdgeInsetsGeometry.all(24),
+          child: Text(
+            _errorMessage!,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ),
+      );
+    }
+
+    if (controller == null || !controller.value.isInitialized) {
+      return Center(
+        child: Text(
+          "Cámara no disponible",
+          style: TextStyle(color: Colors.white),
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        Expanded(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              CameraPreview(controller),
+              // Positioned(
+              //   top: 10,
+              //   left: 10,
+              //   child: IconButton(
+              //     onPressed: () {},
+              //     icon: Icon(Icons.arrow_back),
+              //   ),
+              // ),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.cameraswitch, color: Colors.white, size: 30),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+
+                child: Container(
+                  height: 120,
+                  color: Colors.black,
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () {
+                      print("Tomar foto");
+                    },
+                    child: Container(
+                      width: 76,
+                      height: 76,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 5),
+                      ),
+                      child: Center(
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = _controller;
-
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
-      // body: SafeArea(child:  ),
+      body: SafeArea(child: _buildCameraBody(controller)),
     );
   }
 }
