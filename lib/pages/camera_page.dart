@@ -75,8 +75,17 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     }
   }
 
+  Widget _buildCameraBody(CameraController? contoller) {
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final controller = _controller;
+
+    return const Scaffold(
+      backgroundColor: Colors.black,
+      // body: SafeArea(child:  ),
+    );
   }
 }
